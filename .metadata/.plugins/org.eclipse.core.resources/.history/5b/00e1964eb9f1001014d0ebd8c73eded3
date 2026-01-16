@@ -1,9 +1,0 @@
-package java_exam;
-//class ==> 프로그램의 최소 실행단위
-public class HelloWorld {
-
-	public static void main(String[] args) {
-		System.out.println("Hello World!!");
-	}
-
-}

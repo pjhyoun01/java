@@ -1,8 +1,0 @@
-package java_exam;
-
-public class typeCasting {
-	public static void main(String[] args) {
-		int num = 10;
-		float fnum = n
-	}
-}
