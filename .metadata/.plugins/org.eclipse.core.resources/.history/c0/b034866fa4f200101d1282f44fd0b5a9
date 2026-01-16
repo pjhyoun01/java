@@ -1,0 +1,7 @@
+package exam.baekjoon;
+
+public class Q14681 {
+	public static void main(String[] args) {
+		int quadrantN;
+	}
+}

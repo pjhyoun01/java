@@ -1,0 +1,21 @@
+package System.out;
+
+public class ArithmaticQuiz4 {
+public static void main(String[] args) {
+	int subjectA = 100;
+	int subjectB = 80;
+	int subjectC = 95;
+	int subjectD = 68;
+	
+	int totalScore = 0;
+	double average = 0;
+	double score = 0;
+	
+	totalScore = subjectA + subjectB + subjectC + subjectD;
+	average = totalScore / 4;
+	
+	if (average == 100) {
+		score = 4.5;
+	}
+}
+}

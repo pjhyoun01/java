@@ -1,0 +1,24 @@
+package java_exam;
+
+public class TypeCasting {
+	public static void main(String[] args) {
+		
+//		int num = 10;
+//		float fnum = num;
+//		double dnum = num;
+//		
+////		정수 -> 부동소수점 변환에서 묵시적 변환이 가능한 이유
+////		- 부동소수점은 정수보다 표현하는 범위가 같은 byte를 사용하더라도 더 크기 때문
+////		- 부동소수점 = 정수 + 소수점
+//		System.out.println(num);  //10
+//		System.out.println(fnum); //10.0
+//		System.out.println(dnum); //10.0
+		
+		float fnum = 10.9f;
+		int num = (int) fnum;
+		System.out.println(fnum);
+		System.out.println(num);
+		
+		
+	}
+}
