@@ -1,6 +1,6 @@
 package exam;
 
-public class ArithmaticQuiz4 {
+public class ArtithmaticQuiz4 {
 	public static void main(String[] args) {
 		int subjectA = 100;
 		int subjectB = 80;
