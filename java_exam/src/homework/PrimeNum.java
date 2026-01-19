@@ -17,14 +17,12 @@ public class PrimeNum {
 		 * 				만약 줄바꿈 카운트 나누기 10이 0일 경우
 		 * 				줄바꿈
 		 */
-		int halfNum = 0;
 		int lineChangeCount = 0;
 		boolean isPrime = true;
 		for (int i = 2; i <= 100_000; i++) {
-			halfNum = i / 2;
 			isPrime = true;
 			
-			for (int j = 2; j <= halfNum; j++) {
+			for (int j = 2; j <= i / 2; j++) {
 				if (i % j == 0) {
 					isPrime = false;
 					break;
