@@ -16,6 +16,7 @@ public class Q2884 {
  */
 		if (minute < 45) {
 			minute = minute + 15;
+			hour -= 1; 
 			if (hour == 0 && minute < 45) {
 				hour = 23;
 			}
