@@ -1,26 +1,13 @@
 package examclass;
 
+import java.util.Scanner;
+
 public class Drinkmachine {
 
 	Drink bacchus;
 	Drink monster;
 	Drink hotsix;
 	Drink milkiss;
-
-//	메뉴 선택
-//	처음 실행 시 각각의 재고 입력	
-//	1번 주문하기 2번 입고하기 3번 재고 확인하기 0번 종료하기
-	public void selectMenu(int menuNum) {
-		if (menuNum == 1) {
-			
-		} else if (menuNum == 2) {
-			
-		} else if (menuNum == 3) {
-			
-		} else {
-			System.out.println("종료되었습니다");
-		}
-	}
 
 	public Drinkmachine(Drink bacchus, Drink monster, Drink hotsix, Drink milkiss) {
 		this.bacchus = bacchus;
@@ -29,10 +16,29 @@ public class Drinkmachine {
 		this.milkiss = milkiss;
 	}
 
+//	메뉴 선택	
+	public void selectMenu(int menuNum) {	
+//		재고 입력하기
+		if (menuNum == 1) {
+//			주문하기
+		} else if (menuNum == 2) {
+//			입고하기
+		} else if (menuNum == 3) {
+//			재고 확인하기
+		} else {
+//			종료하기
+		}
+	}
+
+//	재고 입력하기
+	public void currentQuentity() {
+		
+	}
+	
+
 //	주문하기 (제품명, 주문수량)
 //	int 구매 금액 반환
 	public int orderDrink(String name, int quantity) {
-
 		if (name == "bacchus") {
 			this.bacchus.quantity -= quantity;
 			return this.bacchus.price * quantity;
@@ -73,6 +79,10 @@ public class Drinkmachine {
 //	모든 상품의 재고 출력
 //	void
 	public void quantityPrint() {
-		System.out.println("박카스 ");
+		
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 }
