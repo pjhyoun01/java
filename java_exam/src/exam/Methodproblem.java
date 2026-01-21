@@ -7,52 +7,23 @@ public class Methodproblem {
 //		printMax(20, 10);
 //		printAge(10);
 //		printAge(20);
-//		getFizzBuzz();
-//		getUniqueNumbers();
-//		getEvenOdd(4, 5);
-//		getEvenOdd(3, 5);
-//		getSumOfFive(1, 2, 3, 4, 5);
-//		getAverage(150, 3);
-//		getGrade(95);
-//		getGrade(85);
-//		getGrade(75);
+		System.out.println(getFizzBuzz(15));
+		getUniqueNumbers();
+		System.out.println(getEvenOdd(4, 5));
+		System.out.println(getEvenOdd(3, 5));
+		System.out.println(getSumOfFive(1, 2, 3, 4, 5));
+		System.out.println(getAverage(150, 3));
+		System.out.println(getGrade(95));
+		System.out.println(getGrade(85));
+		System.out.println(getGrade(75));
 //		System.out.println(nextChar('a'));
 //		System.out.println(getCharacters('a', 'z'));
 //		System.out.println(getLowerCaseAlpha('a', 25));
 		System.out.println(convertUpperCase('a'));
-		
+
 	}
 
-	private static char convertUpperCase(char str) {
-		str -= 32;
-		return str;
-	}
-
-	private static char getLowerCaseAlpha(char str, int num) {
-		if (num > 25 || num < 0) {
-			return ' ';
-		}
-		str += num;
-		return str;
-		
-	}
-
-	private static String getCharacters(char str1, char str2) {
-		int numChar1 = str1;
-		int numChar2 = str2;
-
-		char[] array = new char[numChar2 - numChar1];
-		String arrayString = null;
-//		
-		for (int i = 0; i < numChar2 - numChar1; i++) {
-			array[i] = (char) (numChar1 + i);
-			arrayString = String.valueOf(array);
-		}
-		return arrayString;
-	}
-	
-	
-
+//	no. 1
 	public static void printSum(int num) {
 		int sum = 0;
 		for (int i = 1; i < num; i++) {
@@ -61,6 +32,7 @@ public class Methodproblem {
 		System.out.println(sum);
 	}
 
+//	no. 2
 	public static void printPrime(int num) {
 		boolean isPrime = false;
 		for (int i = 2; i <= num; i++) {
@@ -77,6 +49,7 @@ public class Methodproblem {
 		}
 	}
 
+//	no. 3
 	public static void printMax(int num1, int num2) {
 		if (num1 > num2) {
 			System.out.println(num1);
@@ -85,6 +58,7 @@ public class Methodproblem {
 		}
 	}
 
+//	no. 4
 	public static void printAge(int age) {
 		if (age > 19) {
 			System.out.println("성인 입니다");
@@ -93,6 +67,7 @@ public class Methodproblem {
 		}
 	}
 
+//	no. 5
 	public static String getFizzBuzz(int ranNum) {
 		if (ranNum % 3 == 0) {
 			return "Fizz";
@@ -104,6 +79,7 @@ public class Methodproblem {
 		return ranNum + "";
 	}
 
+//	no. 6
 	public static void getUniqueNumbers() {
 		int[] ranNumArray = new int[7];
 		for (int i = 0; i < ranNumArray.length; i++) {
@@ -120,43 +96,78 @@ public class Methodproblem {
 		}
 	}
 
-	public static void getEvenOdd(int num1, int num2) {
+//	no. 7
+	public static String getEvenOdd(int num1, int num2) {
 		int mul = num1 * num2;
 		if (mul % 2 == 0) {
-			System.out.println("짝수");
+			return "짝수";
 		} else {
-			System.out.println("홀수");
+			return "홀수";
 		}
 	}
 
-	public static void getSumOfFive(int num1, int num2, int num3, int num4, int num5) {
+//	no. 8
+	public static int getSumOfFive(int num1, int num2, int num3, int num4, int num5) {
 		int sum = num1 + num2 + num3 + num4 + num5;
-		System.out.println(sum);
+		return sum;
 	}
 
-	public static void getAverage(int score, int count) {
+//	no. 9
+	public static double getAverage(int score, int count) {
 		double avrage = Math.round(score / count * 1000) / 1000;
-		System.out.println(avrage);
+		return avrage;
 	}
 
-	public static void getGrade(int score) {
+//	no. 10
+	public static String getGrade(int score) {
 		if (score >= 95) {
-			System.out.println("A");
+			return "A";
 		} else if (score >= 85) {
-			System.out.println("B");
+			return "B";
 		} else if (score >= 75) {
-			System.out.println("C");
+			return "C";
 		} else if (score >= 65) {
-			System.out.println("D");
+			return "D";
 		} else {
-			System.out.println("F");
+			return "F";
 		}
 	}
 
+//	no. 11
 	public static char nextChar(char str) {
 		str += 1;
 
 		return str;
 	}
 
+//	no. 12
+	private static String getCharacters(char str1, char str2) {
+		int numChar1 = str1;
+		int numChar2 = str2;
+
+		char[] array = new char[numChar2 - numChar1];
+		String arrayString = null;
+
+		for (int i = 0; i < numChar2 - numChar1; i++) {
+			array[i] = (char) (numChar1 + i);
+			arrayString = String.valueOf(array);
+		}
+		return arrayString;
+	}
+
+//	no. 13
+	private static char getLowerCaseAlpha(char str, int num) {
+		if (num > 25 || num < 0) {
+			return ' ';
+		}
+		str += num;
+		return str;
+
+	}
+
+//	no. 14
+	private static char convertUpperCase(char str) {
+		str -= 32;
+		return str;
+	}
 }
