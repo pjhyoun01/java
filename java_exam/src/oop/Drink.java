@@ -1,4 +1,4 @@
-package examclass;
+package oop;
 
 public class Drink {
 	String name;
