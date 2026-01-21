@@ -1,22 +1,48 @@
 package homework;
 
 public class Customer {
-	/*
-	 * 소비자는 판매자로부터 상품을 구매할 수 있으며
-	 * 한번에 n개 만큼의 상품을 구매할 수 있습니다
-	 * 구매(5); 라고 한다면 소비자의 장바구니의 상품 개수에서 5개가 늘어나야 한다
-	 * 또한 5개를 구매한 금액 만큼 소비자의 지갑에서 빼야 함
-	 * 
-	 * 소비자가 구매한 상품의 무게는 1개당 500g
-	 * 만약 소비자가 들 수 잇는 무게에 도달하면 더 이상 상품을 구매할 수 없다
-	 * 소비자의 지갑의 돈이 구매하려는 상품의 개수보다 충분하지 않다면 
-	 * 더이상 상품을 구매할 수 없습니다
-	 * 
-	 * 소비자가 상품을 구매할 수 없다면 그 사유에 따라 
-	 * "더 이상 장바구니를 들 수 없습니다" 
-	 * 혹은 "돈이 부족합니다" 를 출력합니다.
-	 * 
-	 * 상품의 구매 프로세스가 종료되었다면
-	 * 구매자의 상품 수, 장바구니의 무게, 지갑의 돈을 출력
-	 */
+	int cartCount;
+	int money;
+
+	final double PER_WEIGHT = 0.5;
+	double currentWeight;
+	double maxWeight = 10.0;
+
+	public Customer(int money) {
+		this.money = money;
+		this.cartCount = 0;
+		this.currentWeight = 0.0;
+	}
+
+	public void buy(Seller seller, int amount) {
+		if (this.money < (amount * seller.PRICE)) {
+			System.out.println("돈이 부족합니다.");
+			printStatus();
+			return;
+		}
+
+		if (this.currentWeight + (amount * PER_WEIGHT) > maxWeight) {
+			System.out.println((int) maxWeight + "kg 까지만 들 수 있습니다");
+			System.out.println("현재 무게: " + amount * PER_WEIGHT);
+			printStatus();
+			return;
+		}
+
+		int boughtCount = seller.sell(amount);
+
+		if (boughtCount > 0) {
+			this.cartCount += boughtCount;
+			this.money -= (boughtCount * seller.PRICE);
+			this.currentWeight += (boughtCount * PER_WEIGHT);
+		}
+
+		printStatus();
+	}
+
+	public void printStatus() {
+		System.out.println("상품 수: " + cartCount + "개 ");
+		System.out.println("현재 무게: " + currentWeight + "kg");
+		System.out.println("지갑: " + money + "원");
+
+	}
 }
