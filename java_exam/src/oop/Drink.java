@@ -2,12 +2,12 @@ package oop;
 
 public class Drink {
 	String name;
-	int price;
 	int quantity;
+	int price;
 
-	public Drink(String name, int price, int quantity) {
+	public Drink(String name, int quantity, int price) {
 		this.name = name;
-		this.price = price;
 		this.quantity = quantity;
+		this.price = price;
 	}
 }

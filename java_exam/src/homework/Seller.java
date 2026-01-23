@@ -37,4 +37,5 @@ public class Seller {
 		System.out.println("재고: " + stock + "개");
 		System.out.println("자본금: " + capital + "원");
 	}
+	
 }

@@ -27,6 +27,12 @@ public class Car {
 	
 //	인스턴스 메소드
 	
+	public Car(boolean isEngineStart, int speed) {
+		this.isEngineStart = isEngineStart;
+		this.speed = speed;
+	}
+	
+	
 	/**<pre>
 	 * 현재 엔진의 상태에 따라서 시동을 켜거나 끈다
 	 * 시동이 걸리면 isEnigneStart의 값이 ture 꺼지면 dalse가 된다
@@ -48,6 +54,8 @@ public class Car {
 		}
 	}
 	
+	
+
 	/**<pre>
 	 * 시동이 켜져 있을 때 가속페달을 누르는 압력 만큼 속도가 증가
 	 * </pre>

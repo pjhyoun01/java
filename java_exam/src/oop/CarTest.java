@@ -11,7 +11,7 @@ public class CarTest {
 //		car.pressGasPedal(10);
 //		car.pressBrakePedal(40);
 		
-		Car kona = new Car();
+		Car kona = new Car(false, 30);
 		
 //		kona의 엔진 상태를 출력한다
 		kona.pressEngineStartButton();
@@ -20,7 +20,7 @@ public class CarTest {
 		
 //		kona의 현재 속도를 출력한다
 		
-		Car carnival = new Car();
+		Car carnival = new Car(true, 20);
 		
 		carnival.pressGasPedal(200);
 		carnival.pressEngineStartButton();

@@ -20,7 +20,7 @@ public class Customer {
 			printStatus();
 			return;
 		}
-
+		
 		if (this.currentWeight + (amount * PER_WEIGHT) > maxWeight) {
 			System.out.println((int) maxWeight + "kg 까지만 들 수 있습니다");
 			System.out.println("현재 무게: " + amount * PER_WEIGHT);
