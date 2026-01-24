@@ -2,78 +2,106 @@ package com.ktdsuniversity.edu.restaurant;
 
 public class Customer {
 	private int weight;
-	private boolean gender;
-	private int hungerLevelPerCust;
-	private int drunkLevelPerCust;
-	
-	Customer[] customers;
+	private int wallet;
+	private boolean isMan; // true: 남, false: 여
+	private int currentHungerLevel = 0;
+	private double currentDrunkLevel = 0.0;
+	private int maxHungerCapacity;
 
-	public Customer(int hungerLevelPerCust, int drunkLevelPerCust) {
-		this.hungerLevelPerCust = hungerLevelPerCust;
-		this.drunkLevelPerCust = drunkLevelPerCust;
+	public Customer(int weight, int wallet, boolean isMan) {
+		this.weight = weight;
+		this.wallet = wallet;
+		this.isMan = isMan;
+		this.maxHungerCapacity = calcMaxHunger();
 	}
 
-	public int getHungerLevelPerCust() {
-		return hungerLevelPerCust;
+	public int getWeight() {
+		return weight;
 	}
 
-	public void setHungerLevelPerCust(int hungerLevelPerCust) {
-		this.hungerLevelPerCust = hungerLevelPerCust;
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
-	public int getDrunkLevelPerCust() {
-		return drunkLevelPerCust;
+	public int getWallet() {
+		return wallet;
 	}
 
-	public void setDrunkLevelPerCust(int drunkLevelPerCust) {
-		this.drunkLevelPerCust = drunkLevelPerCust;
+	public void setWallet(int wallet) {
+		this.wallet = wallet;
 	}
 
-	// 주문하기
-	public void order() {
-
+	public boolean isMan() {
+		return isMan;
 	}
 
-//	배부름 증가하기
-//	손님이 음식을 주문하면 음식마다의 무게만큼 배부름 정도가 채워집니다.
-	public void increaseHungerLevel() {
-		
+	public void setMan(boolean isMan) {
+		this.isMan = isMan;
 	}
 
-//	취함 증가하기
-//	손님이 술을 주문하면 술 마다의 알콜 비율의 10% 만큼 취함 정도가 증가합니다.
-	public void increaseDrunklevel() {
-
+	public int getCurrentHungerLevel() {
+		return currentHungerLevel;
 	}
 
-
-//	배부름 정도 계산
-	public double calcHungerLevel () {
-//		((음식별 무게 * 각 주문 개수) / 손님 별 용량) * 100
-		double capacityPerCust;
-		
-//		50 kg	약 1.0 kg ~ 1.25 kg	약 330 g ~ 410 g
-//		60 kg	약 1.2 kg ~ 1.50 kg	약 400 g ~ 500 g
-//		70 kg	약 1.4 kg ~ 1.75 kg	약 460 g ~ 580 g
-//		80 kg	약 1.6 kg ~ 2.00 kg	약 530 g ~ 660 g
-//		90 kg	약 1.8 kg ~ 2.25 kg	약 600 g ~ 750 g
-		return 0.0;
+	public void setCurrentHungerLevel(int currentHungerLevel) {
+		this.currentHungerLevel = currentHungerLevel;
 	}
-	
-//	혈중알코올 농도 계산
-	public double calcBAC(Menu info) {
-		double genderNum = 0;
-		if (gender) {
-//			성별이 true일 때만 1: 남자
-//			false일 때는 0: 여자
+
+	public double getCurrentDrunkLevel() {
+		return currentDrunkLevel;
+	}
+
+	public void setCurrentDrunkLevel(double currentDrunkLevel) {
+		this.currentDrunkLevel = currentDrunkLevel;
+	}
+
+	public int getMaxHungerCapacity() {
+		return maxHungerCapacity;
+	}
+
+	public void setMaxHungerCapacity(int maxHungerCapacity) {
+		this.maxHungerCapacity = maxHungerCapacity;
+	}
+
+	public void increaseHunger(int amount) {
+		this.currentHungerLevel += amount;
+	}
+
+	public void increaseDrunk(double amount) {
+		this.currentDrunkLevel += amount;
+	}
+
+	private int calcMaxHunger() {
+		if (this.weight >= 90)
+			return 2025 / 3;
+		if (this.weight >= 80)
+			return 1800 / 3;
+		if (this.weight >= 70)
+			return 1575 / 3;
+		if (this.weight >= 60)
+			return 1350 / 3;
+		return 1125 / 3;
+	}
+
+	public double calcBAC(Menu menu) {
+		double genderNum;
+		if (isMan) {
 			genderNum = 0.86;
 		} else {
 			genderNum = 0.64;
 		}
-//		A = 마신 용량(ml) * 도수(%) * 0.8(알코올 비중)
-		double totalAlcohol = info.getCapacityPerDrink() * info.getPercentagePerDrink() * 0.8;
-//		C혈중알코올농도 = (A마신 알코올의 총량 * 0.7) / (P체중 * R성별 계수(남성:0.86, 여성 0.64) * 10)
-		double bloodAlcoholConcentration = (totalAlcohol * 0.7) / (weight * genderNum * 10.0);
-		return bloodAlcoholConcentration;
+		double totalAlcohol = menu.getWeightPerMenu() * menu.getPercentagePerDrink() * 0.01 * 0.8;
+		return (totalAlcohol * 0.7) / (weight * genderNum * 10.0);
+	}
+
+	public void order(Customer cust, Restaurant rest, Menu menu, int quantity) {
+		rest.judgeOrder(cust, menu, quantity);
+	}
+	
+	public void printStatus() {
+		System.out.println("\n-------- 상태 --------");
+        System.out.println("잔액: " + getWallet());
+        System.out.println("현재 배부름: " + getCurrentHungerLevel() + "g");
+        System.out.printf("현재 알코올 농도: %.4f%%\n", getCurrentDrunkLevel());
 	}
 }

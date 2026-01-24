@@ -1,92 +1,44 @@
 package com.ktdsuniversity.edu.restaurant;
 
 public class Menu {
-
-	private String menuName;
-	private int orderCountPermenu;
+	private String name;
 	private int weightPerMenu;
-
-	private String drinkName;
-	private int capacityPerDrink;
+	private boolean isFood; // true: 음식, false: 술
 	private int percentagePerDrink;
-	private int orderCountPerDrink;
+	private int price;
 
-	Menu[] menus;
-
-	public Menu(String menuName, int orderCountPermenu, int weightPerMenu, String drinkName, int capacityPerDrink,
-			int percentagePerDrink, int orderCountPerDrink, Menu[] menus) {
-		this.menuName = menuName;
-		this.orderCountPermenu = orderCountPermenu;
+	public Menu(String name, int weightPerMenu, int price) {
+		this.name = name;
 		this.weightPerMenu = weightPerMenu;
-		this.drinkName = drinkName;
-		this.capacityPerDrink = capacityPerDrink;
+		this.price = price;
+		this.isFood = true;
+	}
+
+	public Menu(String name, int weightPerMenu, int percentagePerDrink, int price) {
+		this.name = name;
+		this.weightPerMenu = weightPerMenu;
 		this.percentagePerDrink = percentagePerDrink;
-		this.orderCountPerDrink = orderCountPerDrink;
-		this.menus = menus;
+		this.price = price;
+		this.isFood = false;
 	}
 
-	public String getMenuName() {
-		return menuName;
-	}
-
-	public void setMenuName(String menuName) {
-		this.menuName = menuName;
-	}
-
-	public int getOrderCountPermenu() {
-		return orderCountPermenu;
-	}
-
-	public void setOrderCountPermenu(int orderCountPermenu) {
-		this.orderCountPermenu = orderCountPermenu;
+	public String getName() {
+		return name;
 	}
 
 	public int getWeightPerMenu() {
 		return weightPerMenu;
 	}
 
-	public void setWeightPerMenu(int weightPerMenu) {
-		this.weightPerMenu = weightPerMenu;
-	}
-
-	public String getDrinkName() {
-		return drinkName;
-	}
-
-	public void setDrinkName(String drinkName) {
-		this.drinkName = drinkName;
-	}
-
-	public int getCapacityPerDrink() {
-		return capacityPerDrink;
-	}
-
-	public void setCapacityPerDrink(int capacityPerDrink) {
-		this.capacityPerDrink = capacityPerDrink;
+	public boolean isFood() {
+		return isFood;
 	}
 
 	public int getPercentagePerDrink() {
 		return percentagePerDrink;
 	}
 
-	public void setPercentagePerDrink(int percentagePerDrink) {
-		this.percentagePerDrink = percentagePerDrink;
+	public int getPrice() {
+		return price;
 	}
-
-	public int getOrderCountPerDrink() {
-		return orderCountPerDrink;
-	}
-
-	public void setOrderCountPerDrink(int orderCountPerDrink) {
-		this.orderCountPerDrink = orderCountPerDrink;
-	}
-
-	public Menu[] getMenus() {
-		return menus;
-	}
-
-	public void setMenus(Menu[] menus) {
-		this.menus = menus;
-	}
-
 }

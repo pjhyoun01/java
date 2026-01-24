@@ -1,46 +1,74 @@
 package com.ktdsuniversity.edu.restaurant;
 
 public class Restaurant {
-//	식당 배부름 기준
 	private int hungerLevelPerRest;
-//	식당별 취함 기준
-	private int drunkLevelPerRest;
-	
-	Restaurant[] restaurants;
+	private double drunkLevelPerRest;
+	private Menu[] menus;
 
-	public Restaurant(int hungerLevelPerRest, int drunkLevelPerRest) {
+	public Restaurant(int hungerLevelPerRest, double drunkLevelPerRest, Menu[] menus) {
 		this.hungerLevelPerRest = hungerLevelPerRest;
 		this.drunkLevelPerRest = drunkLevelPerRest;
+		this.menus = menus;
 	}
 
-	public int getHungerLevelPerRest() {
-		return hungerLevelPerRest;
+	public void judgeOrder(Customer cust, Menu menu, int quantity) {
+		int canOrderQuantity = quantity;
+
+		// 2. 돈 기준 체크
+		if (cust.getWallet() < menu.getPrice() * canOrderQuantity) {
+			canOrderQuantity = cust.getWallet() / menu.getPrice();
+			if (menu.isFood()) {
+				System.out.println("돈이 부족하여 " + menu.getName() + " " + canOrderQuantity + "개만 주문하였습니다.");				
+			} else {
+				System.out.println("돈이 부족하여 " + menu.getName() + " " + canOrderQuantity + "병만 주문하였습니다.");				
+			}
+		}
+
+		if (canOrderQuantity <= 0)
+			return;
+
+		// 3. 식당 기준(배부름/취함) 체크 및 수량 조절
+		if (menu.isFood()) {
+			int canTake = hungerLevelPerRest - cust.getCurrentHungerLevel();
+			int requested = menu.getWeightPerMenu() * canOrderQuantity;
+			if (requested > canTake) {
+				canOrderQuantity = canTake / menu.getWeightPerMenu();
+				if (canOrderQuantity > 0) {
+					System.out.println("\n식당 배부름 기준에 따라 " + canOrderQuantity + "개만 주문 했습니다.");
+				} else {
+					System.out.println("\n식당 배부름 기준을 초과 하여 " + menu.getName() + "을/를 주문하지 못했습니다.");
+				}
+			}
+			cust.increaseHunger(menu.getWeightPerMenu() * canOrderQuantity);
+		} else {
+			double oneBac = cust.calcBAC(menu);
+			double canDrinkBac = drunkLevelPerRest - cust.getCurrentDrunkLevel();
+			if (oneBac * canOrderQuantity > canDrinkBac) {
+				canOrderQuantity = (int) (canDrinkBac / oneBac);
+				if (canOrderQuantity > 0) {
+					System.out.println("\n혈중 알코올 농도 기준에 따라 " + canOrderQuantity + "병만 주문 했습니다.");
+				} else {
+					System.out.println("\n혈중 알코올 농도 기준을 초과 하여 " + menu.getName() + "을/를 주문하지 못했습니다.");
+				}
+			}
+			cust.increaseDrunk(oneBac * canOrderQuantity);
+		}
+		if (canOrderQuantity > 0) {
+			cust.setWallet(cust.getWallet() - (menu.getPrice() * canOrderQuantity));
+			System.out.println(menu.getName() + " " + canOrderQuantity + "개 주문 완료");
+		}
 	}
 
-	public void setHungerLevelPerRest(int hungerLevelPerRest) {
-		this.hungerLevelPerRest = hungerLevelPerRest;
-	}
-
-	public int getDrunkLevelPerRest() {
-		return drunkLevelPerRest;
-	}
-
-	public void setDrunkLevelPerRest(int drunkLevelPerRest) {
-		this.drunkLevelPerRest = drunkLevelPerRest;
-	}
-
-	// 주문 받을지 판단하기
-	public void judgeOrder() {
-
-	}
-
-//	손님이 배부른지 판단하기
-	public void judgeHungerLevel() {
-
-	}
-
-//	손님이 취한지 판단하기
-	public void judgeDrunklevel() {
-
+	public void printMenuAndDrink() {
+		System.out.println("-------- 메뉴 --------");
+		for (int i = 0; i < menus.length; i++) {
+			System.out.print((i + 1) + ". " + menus[i].getName() + "   \t");
+			if (menus[i].isFood()) {
+				System.out.println(menus[i].getWeightPerMenu() + "g");
+			} else {
+				System.out.println(menus[i].getWeightPerMenu() + "ml " + menus[i].getPercentagePerDrink() + "%");
+			}
+		}
+		System.out.println();
 	}
 }
