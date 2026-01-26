@@ -42,6 +42,23 @@ public class Q2743 {
 
 //		no. 10809
 //		문제 다시 읽어보기
+		/*
+		 * 입력 받은 영어단어를 
+		 * a ~ z 까지 숫자로 출력
+		 * 출력할 때는 각 알파벳이 몇 번째에 있는지 숫자로 출력하고
+		 * 없는 단어는 -1로 출력
+		 */
+		System.out.println("영단어를 입력해주세요");
+		String str1 = sc.nextLine();
+		char[] alphabet = new char[26];
+		for (int i = 0; i < alphabet.length; i++) {
+			alphabet[i] = (char)(97 + i);
+			if (str1.contains(alphabet[i] + "")) {
+				System.out.print(str1.indexOf(alphabet[i]) + " ");
+			} else {
+				System.out.print(-1 + " ");
+			}
+		}
 
 //		no. 1152
 //		System.out.println("영문장을 입력하세요: ");
@@ -133,16 +150,16 @@ public class Q2743 {
 //		}
 
 //		no. 181875
-		String str1 = sc.nextLine();
-		String[] strArray = str1.split(" ");
-
-		for (int i = 0; i < strArray.length; i++) {
-			if (i % 2 == 1) {
-				System.out.print(strArray[i].toUpperCase() + " ");
-			} else {
-				System.out.print(strArray[i].toLowerCase() + " ");
-			}
-		}
+//		String str1 = sc.nextLine();
+//		String[] strArray = str1.split(" ");
+//
+//		for (int i = 0; i < strArray.length; i++) {
+//			if (i % 2 == 1) {
+//				System.out.print(strArray[i].toUpperCase() + " ");
+//			} else {
+//				System.out.print(strArray[i].toLowerCase() + " ");
+//			}
+//		}
 
 	}
 }
