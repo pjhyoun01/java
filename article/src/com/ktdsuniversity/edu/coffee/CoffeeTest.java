@@ -11,10 +11,14 @@ public class CoffeeTest {
 //		Coffee tea = new Coffee("루이보스", 2_000, 30);
 
 		CoffeeShop cs = new CoffeeShop(ice, hot);
+		CoffeeShop cs2 = new CoffeeShop();
 
 		int price = cs.orderCoffee(1, 3);
 		System.out.println(price);
 		System.out.println();
+		
+		
+		System.out.println(cs.orderCoffee());
 
 		price = cs.orderCoffee(1, 4);
 		System.out.println(price);

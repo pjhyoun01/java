@@ -17,7 +17,31 @@ public class CoffeeShop {
 		this.iceAmericano = iceAmericano;
 		this.hotAmericano = hotAmericano;
 	}
+	
+	public CoffeeShop() {
+//		this.hotAmericano = new Coffee("기본 아메리카노", 1_500, 30);
+//		this.iceAmericano = new Coffee("아이스 아메리카노", 1_500, 50);
+		this(new Coffee("기본 아메리카노", 1_500, 30)
+		   , new Coffee("아이스 아메리카노", 1_500, 50));
+	}
 
+	/**
+	 * 가장 첫 번째 메뉴를 한 개 주문한다
+	 * @return
+	 */
+	public int orderCoffee() {
+		int price = this.orderCoffee(1);
+		return price;
+	}
+	/**
+	 * 메뉴 한개만 주문
+	 * @param menu
+	 * @return
+	 */
+	public int orderCoffee(int menu) {
+		int price = this.orderCoffee(menu, 1);
+		return price;
+	}
 	/**
 	 * 커피숍에서 커피를 판매
 	 * 

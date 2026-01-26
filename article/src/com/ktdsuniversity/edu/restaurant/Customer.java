@@ -4,8 +4,8 @@ public class Customer {
 	private int weight;
 	private int wallet;
 	private boolean isMan; // true: 남, false: 여
-	private int currentHungerLevel = 0;
-	private double currentDrunkLevel = 0.0;
+	private int currentHungerLevel;
+	private double currentDrunkLevel;
 	private int maxHungerCapacity;
 
 	public Customer(int weight, int wallet, boolean isMan) {

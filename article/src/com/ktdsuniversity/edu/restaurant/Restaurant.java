@@ -14,7 +14,6 @@ public class Restaurant {
 	public void judgeOrder(Customer cust, Menu menu, int quantity) {
 		int canOrderQuantity = quantity;
 
-		// 2. 돈 기준 체크
 		if (cust.getWallet() < menu.getPrice() * canOrderQuantity) {
 			canOrderQuantity = cust.getWallet() / menu.getPrice();
 			if (menu.isFood()) {
@@ -27,7 +26,6 @@ public class Restaurant {
 		if (canOrderQuantity <= 0)
 			return;
 
-		// 3. 식당 기준(배부름/취함) 체크 및 수량 조절
 		if (menu.isFood()) {
 			int canTake = hungerLevelPerRest - cust.getCurrentHungerLevel();
 			int requested = menu.getWeightPerMenu() * canOrderQuantity;
