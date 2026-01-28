@@ -1,54 +1,42 @@
 package com.ktdsuniversity.edu.mart;
 
 public class ConvenStore extends NormalStore {
-	Customer cust;
-	private float point;
 
-	public ConvenStore(Product[] products, String name, Customer cust, float point) {
-		super(products, name);
-		this.cust = cust;
-		this.point = point;
-	}
-	
-	
-
-	public float getPoint() {
-		return point;
+	public ConvenStore(Product[] products) {
+		super(products);
 	}
 
-	public void setPoint(float point) {
-		this.point = point;
+	public void savePoint(Customer cust, int productPrice) {
+		float expectPoint = productPrice * 0.001f; // 0.1% 계산
+		cust.setEarnedPoint(cust.getEarnedPoint() + expectPoint);
+		System.out.printf("적립된 포인트: %.2f \n누적 포인트: %.2f\n", expectPoint, cust.getEarnedPoint());
 	}
 
-	public void printPoint() {
-		
-		System.out.println(cust.getName() + "님의 포인트: " + this.point);
-	}
-	
-	/**
-	 * 구매 금액의 0.1% 만큼 적립
-	 * 
-	 * @return 적립 포인트
-	 */
-	public float savePoint(int productPrice) {
-		float expectPoint = productPrice / 1000;
-		this.point += expectPoint;
-		System.out.println("적립금: " + expectPoint);
-		return expectPoint;
-	}
-
-	/**
-	 * 
-	 * 100 포인트 이상 시 사용(전액 사용)
-	 * 
-	 * @return 사용 가능한 포인트
-	 */
-	public int usePoint(int productNum) {
-		int pointAmount = 0;
-		if (this.point >= 100) {
-			pointAmount = this.products[productNum].getPrice() - (int) this.point;
-			this.point -= pointAmount;
+	public int sellUsePoint(Customer cust, int productNum) {
+		if (!canSell(cust, productNum)) {
+			return 0;
 		}
-		return pointAmount;
+
+		int originalPrice = this.getProducts()[productNum].getPrice();
+		int usePoint = 0;
+
+		if (cust.getEarnedPoint() >= 100) {
+			usePoint = (int) cust.getEarnedPoint();
+			cust.setEarnedPoint(cust.getEarnedPoint() - usePoint);
+			System.out.println("사용할 포인트: " + usePoint + "원");
+		}
+
+//	    포인트를 사용한 가격
+		int discountPrice = originalPrice - usePoint;
+
+		if (cust.getPayMoney() < discountPrice) {
+			System.out.println("잔액 부족");
+			cust.setEarnedPoint(cust.getEarnedPoint() + usePoint);
+			return 0;
+		}
+		this.printSellStatus(discountPrice, cust.getPayMoney());
+		savePoint(cust, discountPrice);
+
+		return discountPrice;
 	}
 }

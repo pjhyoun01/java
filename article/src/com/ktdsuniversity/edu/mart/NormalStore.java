@@ -4,11 +4,9 @@ public class NormalStore {
 
 	Product[] products;
 
-	private String name;
 	private int storeMoney;
 
-	public NormalStore(Product[] products, String name) {
-		this.name = name;
+	public NormalStore(Product[] products) {
 		this.products = products;
 	}
 
@@ -20,14 +18,6 @@ public class NormalStore {
 		this.products = products;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public int getStoreMoney() {
 		return storeMoney;
 	}
@@ -36,29 +26,41 @@ public class NormalStore {
 		this.storeMoney = storeMoney;
 	}
 
-	/**
-	 * 상품 번호와 지불 금액을 받고 거스름돈 반환
-	 * 
-	 * @param productNum 상품 번호
-	 * @param money      지불 금액
-	 * @return 판매 금액
-	 */
-	public int sellProduct(int productNum, Customer cust) {
-//		상품 번호가 없을 때 아무것도 하지 않음
-		if (productNum < 0 || productNum > this.products.length) {
-			System.out.println("잘못된 주문");
-			return 0;
+	public boolean canSell(Customer cust, int productNum) {
+		if (productNum < 0 || productNum >= this.products.length) {
+			System.out.println("없는 제품 번호");
+			return false;
 		}
-//		지불 금액이 상품 금액보다 작다면 아무것도 하지 않음
-		if (cust.getPayMoney() < this.getProducts()[productNum].getPrice()) {
+		return true;
+	}
+
+	public void printSellStatus(int price, int payMoney) {
+		this.storeMoney += price; // 직접 필드에 더하거나 setter 이용
+		System.out.println("결제 금액: " + price + "원");
+		System.out.println("거스름돈: " + (payMoney - price) + "원");
+		System.out.println("가게 누적 판매 금액: " + this.storeMoney + "원");
+	}
+
+	public int sell(Customer cust, int productNum) {
+		if (!canSell(cust, productNum))
+			return 0;
+
+		int price = this.products[productNum].getPrice();
+		if (cust.getPayMoney() < price) {
 			System.out.println("금액 부족");
 			return 0;
 		}
-//		store 보유금		
-		this.setStoreMoney(this.getStoreMoney() + this.getProducts()[productNum].getPrice());
-		System.out.println("가게 판매 금액: " + this.storeMoney);
-		System.out.println("반환금: " + (cust.getPayMoney() - this.getProducts()[productNum].getPrice()));
-		return this.getProducts()[productNum].getPrice();
+
+		printSellStatus(price, cust.getPayMoney());
+		return price;
+	}
+
+	public void printProduct(Product[] products) {
+		System.out.println("----- 상품 목록 -----");
+		for (int i = 0; i < products.length; i++) {
+			System.out.println(this.products[i].getName() + ": " + this.products[i].getPrice() + "원");
+		}
+		System.out.println("-------------------");
 	}
 
 }

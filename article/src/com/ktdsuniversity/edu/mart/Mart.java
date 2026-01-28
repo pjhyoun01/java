@@ -11,19 +11,32 @@ public class Mart {
 				new Product("냉동만두", 8_300),
 		};
 		
-		Customer cust = new Customer("박재현", 60_000);
+		Customer cust1 = new Customer("박재현", 60_000, 0, 150);
+		Customer cust2 = new Customer("박승재", 100_000, 1, 12_000);
+		Customer cust3 = new Customer("박범근", 80_000, 2, 500);
 		
-		NormalStore normal = new NormalStore(productArray, "칠성수퍼");
-		NormalStore conven = new ConvenStore(productArray, "GS 25", cust, 1000);
+		NormalStore normal = new NormalStore(productArray);
+		NormalStore conven = new ConvenStore(productArray);
+		NormalStore dept = new DepartmentStore(productArray);
 		
-		int x = normal.sellProduct(2, cust);
-		System.out.println(x);
-		if (conven instanceof ConvenStore store) {
-			store.savePoint(x);
-			
+		normal.printProduct(productArray);
+
+		normal.sell(cust1, 2);
+        System.out.println();
+
+        if (conven instanceof ConvenStore cs) {
+			cs.sellUsePoint(cust1, 0);
 		}
-		
-		
+        System.out.println();
+        
+        if (dept instanceof DepartmentStore dp) {
+			dp.sellUsePointDept(cust1, 1, 5_000);
+			dp.sellUsePointDept(cust2, 1, 4_000);
+			dp.sellUsePointDept(cust3, 1, 0);
+			
+			cust3.setEarnedPoint(cust3.getEarnedPoint() + 15_000);
+			dp.sellUsePointDept(cust3, 1, 11_000);
+		}
 		
 	}
 }
