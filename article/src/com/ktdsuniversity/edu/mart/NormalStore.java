@@ -61,6 +61,7 @@ public class NormalStore {
 			System.out.println(this.products[i].getName() + ": " + this.products[i].getPrice() + "원");
 		}
 		System.out.println("-------------------");
+		System.out.println();
 	}
 
 }

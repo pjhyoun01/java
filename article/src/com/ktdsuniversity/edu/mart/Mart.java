@@ -11,9 +11,9 @@ public class Mart {
 				new Product("냉동만두", 8_300),
 		};
 		
-		Customer cust1 = new Customer("박재현", 60_000, 0, 150);
-		Customer cust2 = new Customer("박승재", 100_000, 1, 12_000);
-		Customer cust3 = new Customer("박범근", 80_000, 2, 500);
+		Customer cust1 = new Customer(60_000, 0, 150);
+		Customer cust2 = new Customer(100_000, 1, 12_000);
+		Customer cust3 = new Customer(80_000, 2, 500);
 		
 		NormalStore normal = new NormalStore(productArray);
 		NormalStore conven = new ConvenStore(productArray);
@@ -34,6 +34,7 @@ public class Mart {
 			dp.sellUsePointDept(cust2, 1, 4_000);
 			dp.sellUsePointDept(cust3, 1, 0);
 			
+//			포인트 적용 예
 			cust3.setEarnedPoint(cust3.getEarnedPoint() + 15_000);
 			dp.sellUsePointDept(cust3, 1, 11_000);
 		}
