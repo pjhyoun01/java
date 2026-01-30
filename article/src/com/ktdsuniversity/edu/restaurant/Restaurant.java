@@ -1,5 +1,10 @@
 package com.ktdsuniversity.edu.restaurant;
 
+import com.ktdsuniversity.edu.restaurant.exceptions.DeficientAmountException;
+import com.ktdsuniversity.edu.restaurant.exceptions.DrunkenException;
+import com.ktdsuniversity.edu.restaurant.exceptions.FullException;
+import com.ktdsuniversity.edu.restaurant.exceptions.WrongOrderQuantityException;
+
 public class Restaurant {
 	private int hungerLevelPerRest;
 	private double drunkLevelPerRest;
@@ -21,10 +26,14 @@ public class Restaurant {
 			} else {
 				System.out.println("돈이 부족하여 " + menu.getName() + " " + canOrderQuantity + "병만 주문하였습니다.");				
 			}
+			throw new DeficientAmountException("돈이 부족합니다");
 		}
 
-		if (canOrderQuantity <= 0)
-			return;
+//		주문 수량이 음수일 때
+		if (canOrderQuantity <= 0) {
+			// TODO
+			throw new WrongOrderQuantityException("주문 수량이 잘못되었습니다");			
+		}
 
 		if (menu.isFood()) {
 			int canTake = hungerLevelPerRest - cust.getCurrentHungerLevel();
@@ -36,6 +45,8 @@ public class Restaurant {
 				} else {
 					System.out.println("\n식당 배부름 기준을 초과 하여 " + menu.getName() + "을/를 주문하지 못했습니다.");
 				}
+				// TODO
+				throw new FullException("배가 너무 부릅니다");
 			}
 			cust.increaseHunger(menu.getWeightPerMenu() * canOrderQuantity);
 		} else {
@@ -48,6 +59,8 @@ public class Restaurant {
 				} else {
 					System.out.println("\n혈중 알코올 농도 기준을 초과 하여 " + menu.getName() + "을/를 주문하지 못했습니다.");
 				}
+				// TODO
+				throw new DrunkenException("취기가 너무 올랐습니다");
 			}
 			cust.increaseDrunk(oneBac * canOrderQuantity);
 		}

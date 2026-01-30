@@ -1,4 +1,4 @@
-package com.ktdsuniversity.edu.abstracts;
+package com.ktdsuniversity.edu.store.abstraction;
 
 public class Guest {
 

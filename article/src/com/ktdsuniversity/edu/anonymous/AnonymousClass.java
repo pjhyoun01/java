@@ -1,7 +1,7 @@
 package com.ktdsuniversity.edu.anonymous;
 
-import com.ktdsuniversity.edu.abstracts.AbstractMart;
-import com.ktdsuniversity.edu.abstracts.Guest;
+import com.ktdsuniversity.edu.store.abstraction.AbstractMart;
+import com.ktdsuniversity.edu.store.abstraction.Guest;
 
 public class AnonymousClass {
 	public static void main(String[] args) {

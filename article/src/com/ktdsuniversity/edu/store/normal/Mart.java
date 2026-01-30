@@ -1,4 +1,4 @@
-package com.ktdsuniversity.edu.mart;
+package com.ktdsuniversity.edu.store.normal;
 
 public class Mart {
 	public static void main(String[] args) {

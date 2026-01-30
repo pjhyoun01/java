@@ -1,10 +1,10 @@
-package com.ktdsuniversity.edu.mart;
+package com.ktdsuniversity.edu.store.inheritance.VO;
 
-public class Product {
+public class ProductVO {
 	private String name;
 	private int price;
 
-	public Product(String name, int price) {
+	public ProductVO(String name, int price) {
 		this.name = name;
 		this.price = price;
 	}

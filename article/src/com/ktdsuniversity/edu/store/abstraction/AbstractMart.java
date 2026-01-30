@@ -1,4 +1,4 @@
-package com.ktdsuniversity.edu.abstracts;
+package com.ktdsuniversity.edu.store.abstraction;
 
 /*
  * abstract 인스턴스로 생성할 수 없는 추상 클래스
