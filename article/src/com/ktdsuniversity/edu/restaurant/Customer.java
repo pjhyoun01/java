@@ -100,7 +100,7 @@ public class Customer {
 	
 	public void printStatus() {
 		System.out.println("\n-------- 상태 --------");
-        System.out.println("잔액: " + getWallet());
+        System.out.println("잔액: " + getWallet() + "원");
         System.out.println("현재 배부름: " + getCurrentHungerLevel() + "g");
         System.out.printf("현재 알코올 농도: %.4f%%\n", getCurrentDrunkLevel());
 	}

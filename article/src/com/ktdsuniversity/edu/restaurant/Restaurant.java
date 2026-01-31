@@ -17,22 +17,20 @@ public class Restaurant {
 	}
 
 	public void judgeOrder(Customer cust, Menu menu, int quantity) {
+		if (quantity <= 0) {
+			throw new WrongOrderQuantityException("주문 수량이 잘못되었습니다");
+		}
+
 		int canOrderQuantity = quantity;
 
 		if (cust.getWallet() < menu.getPrice() * canOrderQuantity) {
 			canOrderQuantity = cust.getWallet() / menu.getPrice();
-			if (menu.isFood()) {
-				System.out.println("돈이 부족하여 " + menu.getName() + " " + canOrderQuantity + "개만 주문하였습니다.");				
-			} else {
-				System.out.println("돈이 부족하여 " + menu.getName() + " " + canOrderQuantity + "병만 주문하였습니다.");				
+			if (canOrderQuantity > 0 && menu.isFood()) {
+				System.out.println("돈이 부족하여 " + menu.getName() + " " + canOrderQuantity + "개만 주문하였습니다.");
+			} else if (canOrderQuantity > 0 && !menu.isFood()) {
+				System.out.println("돈이 부족하여 " + menu.getName() + " " + canOrderQuantity + "병만 주문하였습니다.");
 			}
-			throw new DeficientAmountException("돈이 부족합니다");
-		}
-
-//		주문 수량이 음수일 때
-		if (canOrderQuantity <= 0) {
-			// TODO
-			throw new WrongOrderQuantityException("주문 수량이 잘못되었습니다");			
+			throw new DeficientAmountException("돈이 부족합니다\n");
 		}
 
 		if (menu.isFood()) {
@@ -41,12 +39,10 @@ public class Restaurant {
 			if (requested > canTake) {
 				canOrderQuantity = canTake / menu.getWeightPerMenu();
 				if (canOrderQuantity > 0) {
-					System.out.println("\n식당 배부름 기준에 따라 " + canOrderQuantity + "개만 주문 했습니다.");
+					throw new FullException("식당 배부름 기준에 따라 " + canOrderQuantity + "개만 주문 했습니다.\n");
 				} else {
-					System.out.println("\n식당 배부름 기준을 초과 하여 " + menu.getName() + "을/를 주문하지 못했습니다.");
+					throw new FullException("식당 배부름 기준을 초과 하여 " + menu.getName() + "을/를 주문하지 못했습니다.\n");
 				}
-				// TODO
-				throw new FullException("배가 너무 부릅니다");
 			}
 			cust.increaseHunger(menu.getWeightPerMenu() * canOrderQuantity);
 		} else {
@@ -55,18 +51,17 @@ public class Restaurant {
 			if (oneBac * canOrderQuantity > canDrinkBac) {
 				canOrderQuantity = (int) (canDrinkBac / oneBac);
 				if (canOrderQuantity > 0) {
-					System.out.println("\n혈중 알코올 농도 기준에 따라 " + canOrderQuantity + "병만 주문 했습니다.");
+					throw new DrunkenException("혈중 알코올 농도 기준에 따라 " + canOrderQuantity + "병만 주문 했습니다.\n");
 				} else {
-					System.out.println("\n혈중 알코올 농도 기준을 초과 하여 " + menu.getName() + "을/를 주문하지 못했습니다.");
+					throw new DrunkenException("식당 혈중 알코올 농도 기준을 초과 하여 " + menu.getName() + "을/를 주문하지 못했습니다.\n");
 				}
-				// TODO
-				throw new DrunkenException("취기가 너무 올랐습니다");
 			}
 			cust.increaseDrunk(oneBac * canOrderQuantity);
 		}
 		if (canOrderQuantity > 0) {
 			cust.setWallet(cust.getWallet() - (menu.getPrice() * canOrderQuantity));
 			System.out.println(menu.getName() + " " + canOrderQuantity + "개 주문 완료");
+			System.out.println();
 		}
 	}
 

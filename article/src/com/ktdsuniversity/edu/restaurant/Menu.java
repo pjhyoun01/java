@@ -41,4 +41,5 @@ public class Menu {
 	public int getPrice() {
 		return price;
 	}
+
 }
