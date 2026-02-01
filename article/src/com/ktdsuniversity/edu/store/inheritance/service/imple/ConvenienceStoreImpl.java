@@ -39,7 +39,7 @@ public class ConvenienceStoreImpl extends BasicStore implements PointService {
 				throw new CanNotUsePointException("포인트는 물건 가격을 초과해서 사용할 수 없습니다");
 			}
 			pointInfoDTO.getCustomerVO().setCurrentPoint(0);
-			System.out.println("사용할 포인트:\t" + point + " p");
+			System.out.println("사용할 포인트:\t" + String.format("%,d", point) + " p");
 			return point;
 		} else {
 			throw new CanNotUsePointException("100 포인트 이상 적립 시 사용 가능");
@@ -50,7 +50,7 @@ public class ConvenienceStoreImpl extends BasicStore implements PointService {
 	public void savePoint(CustomerVO customerVO, int productPrice) {
 		double addPoint = productPrice * 0.001;
 		customerVO.setCurrentPoint(customerVO.getCurrentPoint() + addPoint);
-		System.out.println("적립될 포인트:\t" + String.format("%.2f", addPoint) + " p");
+		System.out.println("적립될 포인트:\t" + String.format("%,.2f", addPoint) + " p");
 	}
 
 }

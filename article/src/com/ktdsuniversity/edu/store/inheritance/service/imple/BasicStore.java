@@ -37,17 +37,17 @@ public class BasicStore {
 			throw new DeficientAmountException("소지 금액이 부족합니다");
 		}
 		int sellAmount = this.products[productNum].getPrice() * quantity;
-		System.out.println("물건 가격:\t\t" + sellAmount + " 원");
-		System.out.println("받은 돈:\t\t" + paymentAmount + " 원");
+		System.out.println("물건 가격:\t\t" + String.format("%,d", sellAmount) + " 원");
+		System.out.println("받은 돈:\t\t" + String.format("%,d", paymentAmount) + " 원");
 
 		return sellAmount;
 	}
 
 	public void isAmountEnought(int paymentAmount, int sellAmount, int finalAmount) {
 		if (sellAmount > finalAmount)
-			System.out.println("최종 결제 금액:\t" + finalAmount + " 원");
+			System.out.println("최종 결제 금액:\t" + String.format("%,d", finalAmount) + " 원");
 		if (paymentAmount < finalAmount)
-			throw new DeficientAmountException("지불 금액이 " + (finalAmount - paymentAmount) + "원 부족합니다");
+			throw new DeficientAmountException("지불 금액이 " + String.format("%,d", (finalAmount - paymentAmount)) + "원 부족합니다");
 
 	}
 
@@ -57,16 +57,16 @@ public class BasicStore {
 		this.storeVO.setSellAmount(this.storeVO.getSellAmount() + sellAmount);
 		customerVO.setCurrentAmount(customerVO.getCurrentAmount() + paymentAmount - sellAmount);
 
-		System.out.println("거스름 돈:\t\t" + (paymentAmount - sellAmount) + " 원");
+		System.out.println("거스름 돈:\t\t" + String.format("%,d", (paymentAmount - sellAmount)) + " 원");
 	}
 
 	public void printProduct(CustomerVO customerVO) {
 		System.out.println();
 		System.out.println(" - " + this.storeVO.getName() + " 현황");
-		System.out.println("가게 잔고:\t\t" + this.storeVO.getStartAmount() + " 원");
-		System.out.println("금일 매출액:\t" + this.storeVO.getSellAmount() + " 원");
+		System.out.println("가게 잔고:\t\t" + String.format("%,d", this.storeVO.getStartAmount()) + " 원");
+		System.out.println("금일 매출액:\t" + String.format("%,d", this.storeVO.getSellAmount()) + " 원");
 		System.out.println(" - " + customerVO.getName() + "님 현황");
-		System.out.println("잔고:\t\t" + customerVO.getCurrentAmount() + " 원");
-		System.out.println("보유 포인트:\t" + customerVO.getCurrentPoint() + " p");
+		System.out.println("잔고:\t\t" + String.format("%,d", customerVO.getCurrentAmount()) + " 원");
+		System.out.println("보유 포인트:\t" + String.format("%,.2f", customerVO.getCurrentPoint()) + " p");
 	}
 }

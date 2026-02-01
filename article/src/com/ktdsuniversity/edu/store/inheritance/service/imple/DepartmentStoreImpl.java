@@ -45,7 +45,7 @@ public class DepartmentStoreImpl extends BasicStore implements PointService, Dis
 			}
 			pointInfoDTO.getCustomerVO()
 					.setCurrentPoint(pointInfoDTO.getCustomerVO().getCurrentPoint() - pointInfoDTO.getUsePointAmount());
-			System.out.println("사용할 포인트:\t" + pointInfoDTO.getUsePointAmount() + " p");
+			System.out.println("사용할 포인트:\t" + String.format("%,d", pointInfoDTO.getUsePointAmount()) + " p");
 			return pointInfoDTO.getUsePointAmount();
 		} else {
 			throw new CanNotUsePointException("10000 포인트 이상 적립 시 사용 가능");
@@ -63,7 +63,7 @@ public class DepartmentStoreImpl extends BasicStore implements PointService, Dis
 			addPoint = productPrice * 0.005;
 		}
 		customerVO.setCurrentPoint(customerVO.getCurrentPoint() + addPoint);
-		System.out.println("적립될 포인트:\t" + String.format("%.2f", addPoint) + " p");
+		System.out.println("적립될 포인트:\t" + String.format("%,.2f", addPoint) + " p");
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class DepartmentStoreImpl extends BasicStore implements PointService, Dis
 		} else {
 			return 0;
 		}
-		System.out.println("할인 금액:\t\t" + discountAmount + " 원");
+		System.out.println("할인 금액:\t\t" + String.format("%,d", discountAmount) + " 원");
 		return discountAmount;
 	}
 

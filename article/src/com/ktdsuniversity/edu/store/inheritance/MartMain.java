@@ -49,7 +49,7 @@ public class MartMain {
 		BasicStore dept = new DepartmentStoreImpl(store3, Deptroducts);
 
 		try {
-			norm.sell(new PaymentInfoDTO(cust1, 7_000, 4, 4));
+			norm.sell(new PaymentInfoDTO(cust1, 4_800, 4, 4));
 		} catch (CanNotUsePointException cnupe) {
 			System.out.println(cnupe.getMessage());
 		} catch (DeficientAmountException dae) {
