@@ -2,13 +2,12 @@ package com.ktdsuniversity.edu.store.inheritance.VO;
 
 public class StoreVO {
 	private String name;
-	private int startingAmount;
+	private int startAmount;
 	private int sellAmount;
 
-	public StoreVO(String name, int startingAmount, int sellAmount) {
+	public StoreVO(String name, int startingAmount) {
 		this.name = name;
-		this.startingAmount = startingAmount;
-		this.sellAmount = sellAmount;
+		this.startAmount = startingAmount;
 	}
 
 	public String getName() {
@@ -19,12 +18,12 @@ public class StoreVO {
 		this.name = name;
 	}
 
-	public int getStartingAmount() {
-		return startingAmount;
+	public int getStartAmount() {
+		return startAmount;
 	}
 
-	public void setStartingAmount(int startingAmount) {
-		this.startingAmount = startingAmount;
+	public void setStartAmount(int startingAmount) {
+		this.startAmount = startingAmount;
 	}
 
 	public int getSellAmount() {

@@ -1,19 +1,20 @@
 package com.ktdsuniversity.edu.store.inheritance.service.imple;
 
-import com.ktdsuniversity.edu.store.inheritance.VO.CustomerVO;
-import com.ktdsuniversity.edu.store.inheritance.service.SellService;
+import com.ktdsuniversity.edu.store.inheritance.VO.ProductVO;
+import com.ktdsuniversity.edu.store.inheritance.VO.StoreVO;
+import com.ktdsuniversity.edu.store.inheritance.dto.PaymentInfoDTO;
 
-public class NormalStoreImpl implements SellService{
+public class NormalStoreImpl extends BasicStore{
 
-	@Override
-	public int sellProduct(CustomerVO customerVO, int productNum) {
-		
-		return 0;
+	public NormalStoreImpl(StoreVO storeVO, ProductVO[] products) {
+		super(storeVO, products);
 	}
-
+	
 	@Override
-	public int refundMoney(CustomerVO customerVO, int productPrice) {
-		return 0;
+	public void sell(PaymentInfoDTO paymentInfoDTO) {
+		System.out.println("------------------------------");
+		System.out.println("안녕하세요 " + super.storeVO.getName() + "입니다");
+		super.sell(paymentInfoDTO);
 	}
 
 }
