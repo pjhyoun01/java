@@ -5,7 +5,6 @@ import com.ktdsuniversity.edu.store.inheritance.VO.ProductVO;
 import com.ktdsuniversity.edu.store.inheritance.VO.StoreVO;
 import com.ktdsuniversity.edu.store.inheritance.dto.PaymentInfoDTO;
 import com.ktdsuniversity.edu.store.inheritance.dto.PointInfoDTO;
-import com.ktdsuniversity.edu.store.inheritance.exceptions.CanNotUsePointException;
 import com.ktdsuniversity.edu.store.inheritance.membershiplevel.VIP;
 import com.ktdsuniversity.edu.store.inheritance.membershiplevel.VVIP;
 import com.ktdsuniversity.edu.store.inheritance.service.DiscountService;
@@ -35,21 +34,28 @@ public class DepartmentStoreImpl extends BasicStore implements PointService, Dis
 		super.printProduct(paymentInfoDTO.getCustomerVO());
 	}
 
+	// TODO 보유 포인트 초과 사용 처리 + 논리 검토
 	@Override
 	public int usePoint(PointInfoDTO pointInfoDTO) {
 		int point = (int) pointInfoDTO.getCustomerVO().getCurrentPoint();
-		if (point >= 10_000) {
+		if (point < pointInfoDTO.getUsePointAmount()) {
+//			System.out.println("보유 포인트를 초과해서 사용할 수 없습니다");
+//			System.out.println(point);
+//			pointInfoDTO.setUsePointAmount(point);
+//			System.out.println(pointInfoDTO.getUsePointAmount());
+		} else if (point >= 10_000) {
 			if (pointInfoDTO.getUsePointAmount() > pointInfoDTO.getProductPrice()) {
 				pointInfoDTO.setUsePointAmount(pointInfoDTO.getProductPrice());
-				throw new CanNotUsePointException("포인트는 물건 가격을 초과해서 사용할 수 없습니다");
+				System.out.println("포인트는 물건 가격을 초과해서 사용할 수 없습니다");
 			}
 			pointInfoDTO.getCustomerVO()
 					.setCurrentPoint(pointInfoDTO.getCustomerVO().getCurrentPoint() - pointInfoDTO.getUsePointAmount());
 			System.out.println("사용할 포인트:\t" + String.format("%,d", pointInfoDTO.getUsePointAmount()) + " p");
-			return pointInfoDTO.getUsePointAmount();
 		} else {
-			throw new CanNotUsePointException("10000 포인트 이상 적립 시 사용 가능");
+			pointInfoDTO.setUsePointAmount(0);
+			System.out.println("10000 포인트 이상 적립 시 사용 가능");
 		}
+		return pointInfoDTO.getUsePointAmount();
 	}
 
 	@Override

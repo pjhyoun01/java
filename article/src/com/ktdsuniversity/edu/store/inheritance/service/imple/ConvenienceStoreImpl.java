@@ -5,7 +5,6 @@ import com.ktdsuniversity.edu.store.inheritance.VO.ProductVO;
 import com.ktdsuniversity.edu.store.inheritance.VO.StoreVO;
 import com.ktdsuniversity.edu.store.inheritance.dto.PaymentInfoDTO;
 import com.ktdsuniversity.edu.store.inheritance.dto.PointInfoDTO;
-import com.ktdsuniversity.edu.store.inheritance.exceptions.CanNotUsePointException;
 import com.ktdsuniversity.edu.store.inheritance.service.PointService;
 
 public class ConvenienceStoreImpl extends BasicStore implements PointService {
@@ -36,14 +35,16 @@ public class ConvenienceStoreImpl extends BasicStore implements PointService {
 		if (point >= 100) {
 			if (point > pointInfoDTO.getProductPrice()) {
 				point = pointInfoDTO.getProductPrice();
-				throw new CanNotUsePointException("포인트는 물건 가격을 초과해서 사용할 수 없습니다");
+				System.out.println(("포인트는 물건 가격을 초과해서 사용할 수 없습니다"));
+				
 			}
 			pointInfoDTO.getCustomerVO().setCurrentPoint(0);
 			System.out.println("사용할 포인트:\t" + String.format("%,d", point) + " p");
-			return point;
 		} else {
-			throw new CanNotUsePointException("100 포인트 이상 적립 시 사용 가능");
+			point = 0;
+			System.out.println("100 포인트 이상 적립 시 사용 가능");			
 		}
+		return point;
 	}
 	
 	@Override

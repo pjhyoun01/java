@@ -1,5 +1,7 @@
 package com.ktdsuniversity.edu.restaurant;
 
+import java.util.List;
+
 import com.ktdsuniversity.edu.restaurant.exceptions.DeficientAmountException;
 import com.ktdsuniversity.edu.restaurant.exceptions.DrunkenException;
 import com.ktdsuniversity.edu.restaurant.exceptions.FullException;
@@ -8,9 +10,10 @@ import com.ktdsuniversity.edu.restaurant.exceptions.WrongOrderQuantityException;
 public class Restaurant {
 	private int hungerLevelPerRest;
 	private double drunkLevelPerRest;
-	private Menu[] menus;
+//	private Menu[] menus;
+	private List<Menu> menus;
 
-	public Restaurant(int hungerLevelPerRest, double drunkLevelPerRest, Menu[] menus) {
+	public Restaurant(int hungerLevelPerRest, double drunkLevelPerRest, List<Menu> menus) {
 		this.hungerLevelPerRest = hungerLevelPerRest;
 		this.drunkLevelPerRest = drunkLevelPerRest;
 		this.menus = menus;
@@ -67,12 +70,12 @@ public class Restaurant {
 
 	public void printMenuAndDrink() {
 		System.out.println("-------- 메뉴 --------");
-		for (int i = 0; i < menus.length; i++) {
-			System.out.print((i + 1) + ". " + menus[i].getName() + "   \t");
-			if (menus[i].isFood()) {
-				System.out.println(menus[i].getWeightPerMenu() + "g");
+		for (int i = 0; i < this.menus.size(); i++) {
+			System.out.print((i + 1) + ". " + this.menus.get(i).getName() + "   \t");
+			if (this.menus.get(i).isFood()) {
+				System.out.println(this.menus.get(i).getWeightPerMenu() + "g");
 			} else {
-				System.out.println(menus[i].getWeightPerMenu() + "ml " + menus[i].getPercentagePerDrink() + "%");
+				System.out.println(this.menus.get(i).getWeightPerMenu() + "ml " + this.menus.get(i).getPercentagePerDrink() + "%");
 			}
 		}
 		System.out.println();
