@@ -9,20 +9,16 @@ public class SitVO {
 		this.isReserve = isReserve;
 	}
 
-	@Override
-	public String toString() {
-		String OX = "X";
-		if (isReserve) {
-			OX = "O";
-		}
-		return sitNum + ". " + OX;
+	public int getSitNum() {
+		return sitNum;
 	}
 
 	public boolean isReserve() {
 		return isReserve;
 	}
-	
-	
-	
+
+	public void setReserve(boolean isReserve) {
+		this.isReserve = isReserve;
+	}
 
 }

@@ -1,10 +1,6 @@
 애플리케이션의 실행 흐름을 보고
 Map, List를 이용해 비행기 좌석 예매 시스템을 만드세요.
 
-Map<Integer, List<>>
-private int sitNum;
-private boolean isReserve;
-
 과제 1
 비행기 편의 이름을 입력하면, 좌석 현황을 볼 수 있습니다.
 비행기 편의 이름을 입력하세요:  0001
