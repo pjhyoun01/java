@@ -30,7 +30,7 @@ public class FriendList {
 					System.out.println("오늘 생일인 친구" + friend);
 				}
 
-			} else if (base == base.FAST) {
+			} else if (base == base.PAST) {
 				if (temp.isAfter(LocalDate.now()) &&
 					temp.isBefore(LocalDate.now().minusDays(8))){
 						System.out.println("생일이 지난 친구");

@@ -15,7 +15,7 @@ public class KakaoTalk {
 		
 		fl.printSpecialFriends(Base.FUTURE); //
 		fl.printSpecialFriends(Base.NOW); //
-		fl.printSpecialFriends(Base.FAST); //
+		fl.printSpecialFriends(Base.PAST); //
 		
 		System.out.println(fl);
 	}
