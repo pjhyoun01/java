@@ -44,11 +44,8 @@ public class Store {
 			} else {
 				System.out.println(canEatDate.getDayOfMonth() + "일 까지 드세요");
 			}
+			System.out.println();
 		}
-//			System.out.println();
-//		for (Item item: this.items) {
-//			if
-//		}
 
 
 }
