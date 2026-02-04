@@ -18,34 +18,31 @@ public class Store {
 	}
 
 	public void sell(int index) {
-		/*
-		 * index에 할당 되어있는 제품의 소비기한이 당일이라면 오늘까지 드세요 출력
-		 * 
-		 * 3일 내에 도래하면 가능한 빨리 드세요
-		 * 
-		 * 지났으면 소비기한이 지나 판매하지 않습니다
-		 */
-//		if (items.get(index) == null ) {
-//			throw new NullPointerException();
-//		}
-//		if (index > this.items.size()) {
-//			throw new IndexOutOfBoundsException();
-//		}
+		LocalDate canEatDate = null;
+		try {
+			canEatDate = LocalDate.parse(items.get(index).getExpireDate().toString());
 
-			LocalDate canEatDate = LocalDate.parse(items.get(index).getExpireDate().toString());
-			LocalDate now = LocalDate.now();
-			System.out.println(items.get(index));
-			if (canEatDate.isBefore(now.plusDays(3)) && canEatDate.isAfter(now)) {
-				System.out.println("가능한 빨리 드세요");
-			} else if (canEatDate.toString().equals(now.toString())) {
-				System.out.println("오늘까지 드세요");
-			} else if (canEatDate.isBefore(now)) {
-				System.out.println("소비기한이 지나 판매하지 않습니다");
-			} else {
-				System.out.println(canEatDate.getDayOfMonth() + "일 까지 드세요");
-			}
-			System.out.println();
+		} 
+//		catch (NullPointerException npe) {
+//			System.out.println("상품번호를 입력해주세요.");
+//			return;
+//		} 
+		catch (IndexOutOfBoundsException ioobe) {
+			System.out.println("그런 상품은 없습니다. 상품번호를 확인하고 입력해주세요.\n");
+			return;
 		}
-
+		LocalDate now = LocalDate.now();
+		System.out.println(items.get(index));
+		if (canEatDate.isBefore(now.plusDays(3)) && canEatDate.isAfter(now)) {
+			System.out.println("가능한 빨리 드세요");
+		} else if (canEatDate.toString().equals(now.toString())) {
+			System.out.println("오늘까지 드세요");
+		} else if (canEatDate.isBefore(now)) {
+			System.out.println("소비기한이 지나 판매하지 않습니다");
+		} else {
+			System.out.println(canEatDate.getMonthValue() + "월 " + canEatDate.getDayOfMonth() + "일 까지 드세요");
+		}
+		System.out.println();
+	}
 
 }

@@ -25,8 +25,8 @@ public class StoreTest {
 		store.sell(7);
 		store.sell(8);
 		store.sell(9);
-//		store.sell(10);
-//		store.sell(11);
+		store.sell(10);
+		store.sell(11);
 		
 		/*
 		상품명: 우유, 소비기한: 2026-02-04
