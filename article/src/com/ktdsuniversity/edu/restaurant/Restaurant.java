@@ -28,15 +28,15 @@ public class Restaurant {
 
 		if (cust.getWallet() < menu.getPrice() * canOrderQuantity) {
 			canOrderQuantity = cust.getWallet() / menu.getPrice();
-			if (canOrderQuantity > 0 && menu.isFood()) {
+			if (canOrderQuantity > 0 && menu.getIsFood() == FoodType.FOOD) {
 				System.out.println("돈이 부족하여 " + menu.getName() + " " + canOrderQuantity + "개만 주문하였습니다.");
-			} else if (canOrderQuantity > 0 && !menu.isFood()) {
+			} else if (canOrderQuantity > 0 && menu.getIsFood() == FoodType.DRINK) {
 				System.out.println("돈이 부족하여 " + menu.getName() + " " + canOrderQuantity + "병만 주문하였습니다.");
 			}
 			throw new DeficientAmountException("돈이 부족합니다\n");
 		}
 
-		if (menu.isFood()) {
+		if (menu.getIsFood() == FoodType.FOOD) {
 			int canTake = hungerLevelPerRest - cust.getCurrentHungerLevel();
 			int requested = menu.getWeightPerMenu() * canOrderQuantity;
 			if (requested > canTake) {
@@ -72,7 +72,7 @@ public class Restaurant {
 		System.out.println("-------- 메뉴 --------");
 		for (int i = 0; i < this.menus.size(); i++) {
 			System.out.print((i + 1) + ". " + this.menus.get(i).getName() + "   \t");
-			if (this.menus.get(i).isFood()) {
+			if (this.menus.get(i).getIsFood() == FoodType.FOOD) {
 				System.out.println(this.menus.get(i).getWeightPerMenu() + "g");
 			} else {
 				System.out.println(this.menus.get(i).getWeightPerMenu() + "ml " + this.menus.get(i).getPercentagePerDrink() + "%");

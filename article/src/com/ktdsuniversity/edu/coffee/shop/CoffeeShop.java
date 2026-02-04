@@ -21,8 +21,8 @@ public class CoffeeShop {
 	public CoffeeShop() {
 //		this.hotAmericano = new Coffee("기본 아메리카노", 1_500, 30);
 //		this.iceAmericano = new Coffee("아이스 아메리카노", 1_500, 50);
-		this(new Coffee("기본 아메리카노", 1_500, 30)
-		   , new Coffee("아이스 아메리카노", 1_500, 50));
+		this(new Coffee(CoffeeType.HOTCOFFEE, 1_500, 30)
+		   , new Coffee(CoffeeType.ICECOFFEE, 1_500, 50));
 	}
 
 	/**

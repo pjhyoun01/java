@@ -2,22 +2,26 @@ package com.ktdsuniversity.edu.generics.hw.hw1;
 
 public class SitVO {
 	private int sitNum;
-	private boolean isReserve;
+	private Seat isReserve;
 
-	public SitVO(int sitNum, boolean isReserve) {
+	public SitVO(int sitNum, Seat seat) {
 		this.sitNum = sitNum;
-		this.isReserve = isReserve;
+		this.isReserve = seat;
 	}
 
 	public int getSitNum() {
 		return sitNum;
 	}
 
-	public boolean isReserve() {
+	public void setSitNum(int sitNum) {
+		this.sitNum = sitNum;
+	}
+
+	public Seat getIsReserve() {
 		return isReserve;
 	}
 
-	public void setReserve(boolean isReserve) {
+	public void setIsReserve(Seat isReserve) {
 		this.isReserve = isReserve;
 	}
 

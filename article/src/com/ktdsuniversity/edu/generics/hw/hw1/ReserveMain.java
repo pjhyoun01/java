@@ -49,7 +49,7 @@ public class ReserveMain {
 		for (int i = 0; i < sits.size(); i++) {
 			SitVO sit = sits.get(i);
 			System.out.print(sit.getSitNum() + ": ");
-			if (sit.isReserve()) {
+			if (sit.getIsReserve() == Seat.RESERVATION) {
 				System.out.print("X");
 			} else {
 				System.out.print("O");
@@ -57,7 +57,7 @@ public class ReserveMain {
 
 			if (i < sits.size() - 1)
 				System.out.print(", ");
-			if (!sit.isReserve())
+			if (sit.getIsReserve() == Seat.UNRESERVATION)
 				count++;
 		}
 		System.out.println();
@@ -73,7 +73,7 @@ public class ReserveMain {
 
 			if (findSit == null) {
 				System.out.println("존재하지 않는 좌석 번호입니다. 다시 입력하세요.");
-			} else if (findSit.isReserve()) {
+			} else if (findSit.getIsReserve() == Seat.RESERVATION) {
 				System.out.print("\"" + sitNum + "\"번 좌석은 이미 예약된 좌석입니다. 다른 좌석을 입력하세요: ");
 			} else {
 				return findSit;
@@ -97,7 +97,7 @@ public class ReserveMain {
 
 		// equalsIgnoreCase 대소문자 무시
 		if (yesOrNo.equalsIgnoreCase("y")) {
-			sit.setReserve(true);
+			sit.setIsReserve(Seat.RESERVATION);
 			System.out.println(sit.getSitNum() + "번 좌석 예약이 완료되었습니다.");
 		} else {
 			System.out.println(sit.getSitNum() + "번 좌석 예약이 취소되었습니다.");
@@ -109,26 +109,26 @@ public class ReserveMain {
 
 	public static void main(String[] args) {
 		List<SitVO> sits1 = new ArrayList<>();
-		sits1.add(new SitVO(1, false));
-		sits1.add(new SitVO(2, true));
-		sits1.add(new SitVO(3, false));
-		sits1.add(new SitVO(4, false));
-		sits1.add(new SitVO(5, true));
-		sits1.add(new SitVO(6, false));
-		sits1.add(new SitVO(7, true));
-		sits1.add(new SitVO(8, true));
-		sits1.add(new SitVO(9, false));
+		sits1.add(new SitVO(1, Seat.RESERVATION));
+		sits1.add(new SitVO(2, Seat.UNRESERVATION));
+		sits1.add(new SitVO(3, Seat.UNRESERVATION));
+		sits1.add(new SitVO(4, Seat.RESERVATION));
+		sits1.add(new SitVO(5, Seat.UNRESERVATION));
+		sits1.add(new SitVO(6, Seat.RESERVATION));
+		sits1.add(new SitVO(7, Seat.RESERVATION));
+		sits1.add(new SitVO(8, Seat.UNRESERVATION));
+		sits1.add(new SitVO(9, Seat.UNRESERVATION));
 
 		List<SitVO> sits2 = new ArrayList<>();
-		sits2.add(new SitVO(1, true));
-		sits2.add(new SitVO(2, true));
-		sits2.add(new SitVO(3, true));
-		sits2.add(new SitVO(4, true));
-		sits2.add(new SitVO(5, true));
-		sits2.add(new SitVO(6, true));
-		sits2.add(new SitVO(7, true));
-		sits2.add(new SitVO(8, true));
-		sits2.add(new SitVO(9, true));
+		sits2.add(new SitVO(1, Seat.RESERVATION));
+		sits2.add(new SitVO(2, Seat.RESERVATION));
+		sits2.add(new SitVO(3, Seat.RESERVATION));
+		sits2.add(new SitVO(4, Seat.RESERVATION));
+		sits2.add(new SitVO(5, Seat.RESERVATION));
+		sits2.add(new SitVO(6, Seat.RESERVATION));
+		sits2.add(new SitVO(7, Seat.RESERVATION));
+		sits2.add(new SitVO(8, Seat.RESERVATION));
+		sits2.add(new SitVO(9, Seat.RESERVATION));
 
 		Map<Integer, List<SitVO>> flight = new HashMap<>();
 		flight.put(1, sits1);

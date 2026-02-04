@@ -1,5 +1,7 @@
 package com.ktdsuniversity.edu.coffee.coffee;
 
+import com.ktdsuniversity.edu.coffee.shop.CoffeeType;
+
 /**
  * 커피 메뉴를 나타내는 데이터 클래스
  */
@@ -7,7 +9,7 @@ public class Coffee {
 	/**
 	 * 커피 메뉴의 이름
 	 */
-	private String name;
+	private CoffeeType name;
 
 	/**
 	 * 커피 메뉴의 가격
@@ -19,17 +21,17 @@ public class Coffee {
 	 */
 	private int stock;
 
-	public Coffee(String name, int price, int stock) {
+	public Coffee(CoffeeType name, int price, int stock) {
 		this.name = name;
 		this.price = price;
 		this.stock = stock;
 	}
 
-	public String getName() {
+	public CoffeeType getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(CoffeeType name) {
 		this.name = name;
 	}
 

@@ -3,11 +3,12 @@ package com.ktdsuniversity.edu.coffee;
 import com.ktdsuniversity.edu.coffee.coffee.Coffee;
 import com.ktdsuniversity.edu.coffee.shop.CoffeeShop;
 //import com.ktdsuniversity.edu.coffee.shop.CoffeeShopArray;
+import com.ktdsuniversity.edu.coffee.shop.CoffeeType;
 
 public class CoffeeTest {
 	public static void main(String[] arg) {
-		Coffee ice = new Coffee("아이스 티", 2_500, 100);
-		Coffee hot = new Coffee("밤 라떼", 2_000, 3);
+		Coffee ice = new Coffee(CoffeeType.ICECOFFEE, 2_500, 100);
+		Coffee hot = new Coffee(CoffeeType.HOTCOFFEE, 2_000, 3);
 //		Coffee tea = new Coffee("루이보스", 2_000, 30);
 
 		CoffeeShop cs = new CoffeeShop(ice, hot);
